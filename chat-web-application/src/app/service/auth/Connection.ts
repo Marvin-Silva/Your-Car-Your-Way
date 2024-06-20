@@ -1,6 +1,9 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { LoginRequest } from "../../interface/LoginRequest";
+import { User } from "../../interface/User";
+import { UserService } from "../connection/UserService";
 
 @Injectable({
     providedIn: 'root'
@@ -8,15 +11,12 @@ import { Observable } from "rxjs";
 export class Connection{
 
     public url = 'http://localhost:8080/chat/api';
+    constructor(private httpClient: HttpClient, private userService: UserService){}
 
-    constructor(private httpClient: HttpClient){}
-
-    public connect(login: string, password: string): Observable<string> {
-        // Logique pour se connecter
-        // Par exemple, vous pouvez envoyer une requête HTTP POST au serveur pour authentifier l'utilisateur
-        const body = { login, password };
-    
-        return this.httpClient.post<string>(this.url+"auth/user", {body});
-      }
-
+    public connect(loginRequest: LoginRequest):Observable<User> {
+      // console.log("Client", loginRequest);
+    const user = this.httpClient.post<User>(this.url+'/auth/user', {login: loginRequest.login, password: loginRequest.password});
+    user.subscribe(value => this.userService.setUser(value));
+    return user;
+    }
 }

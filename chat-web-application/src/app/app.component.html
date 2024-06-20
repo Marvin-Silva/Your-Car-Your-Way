@@ -3,17 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Home</title>
 </head>
 <body>
-  <form (ngSubmit)="Authentication(login.value, password.value)">
-    <label for="login">Login</label>
-    <input type="text" #login required>
 
-    <label for="password">Password</label>
-    <input type="password" #password required>
-
-    <button type="submit">Connecter</button>
-  </form>
 </body>
+<router-outlet></router-outlet>
 </html>
