@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.your_car_your_way.chat_api.model.LoginRequest;
 import com.your_car_your_way.chat_api.model.User;
 import com.your_car_your_way.chat_api.service.client_service.ClientService;
 
@@ -30,24 +31,31 @@ public class ConnectionService {
     }
 
     // Methode pour charger les utilisateurs
-    public List<User>loadUsers() throws StreamReadException, DatabindException, IOException{
+    public List<User>loadUsers(){
+        try{
         Resource resource = resourceLoader.getResource("classpath:users.json");
         ObjectMapper mapper = new ObjectMapper();
         users = mapper.readValue(resource.getInputStream(), new TypeReference<List<User>>(){});
         System.out.println("liste: "+users);
+        }catch(Exception exception){
+            exception.getStackTrace();
+        }
         return users;
     }
     
     // Méthode pour vérifier et connecter l'utilisateur
-    public String connecte(String login, String password) throws IOException{
-       for(User user: users){
-        if ((user.getLogin().equals(login)) && (user.getMotDePasse().equals(password))) {
-            ClientService.identifier = user.getId();
-            // Get user identifier for service Client request 
-            return "You are logged in as : " + login;
+    public User connecte(LoginRequest loginRequest){
+    try{
+        for(User user: users){
+            if ((user.getLogin().equals(loginRequest.getLogin())) && (user.getMotDePasse().equals(loginRequest.getPassword()))) {
+                // Get user identifier for service Client request 
+                return user;
+            }
+           } 
+           
+        }catch(Error e){
+            e.getStackTrace();
         }
-       } 
-       return "You are not logged !!!";
-        }
-
+        return null;
+    }       
     }
