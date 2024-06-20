@@ -1,74 +1,26 @@
 [
     {
-        "id": 12,
+        "id": 0,
         "utilisateurID": 0,
         "typeContact": null,
-        "message": "This Message was written from url",
-        "dateContact": "2024-05-13",
+        "message": null,
+        "dateContact": "2024-06-19",
         "status": null
     },
     {
-        "id": 13,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "This Message was written from url",
-        "dateContact": "2024-05-13",
-        "status": null
+        "id": 1,
+        "utilisateurID": 1,
+        "typeContact": "",
+        "message": "Bonjour, pouvez-vous m'aider?",
+        "dateContact": "2024-06-20",
+        "status": ""
     },
     {
         "id": 2,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "This Message was written from url",
-        "dateContact": "2024-05-13",
-        "status": null
-    },
-    {
-        "id": 3,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "This Message was written from url",
-        "dateContact": "2024-05-13",
-        "status": null
-    },
-    {
-        "id": 4,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "This Message was written from url",
-        "dateContact": "2024-06-18",
-        "status": null
-    },
-    {
-        "id": 5,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "hekko",
-        "dateContact": "2024-06-19",
-        "status": null
-    },
-    {
-        "id": 6,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "hekkoklll",
-        "dateContact": "2024-06-19",
-        "status": null
-    },
-    {
-        "id": 7,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "Bonjour, pouvez-vous m'aider",
-        "dateContact": "2024-06-19",
-        "status": null
-    },
-    {
-        "id": 8,
-        "utilisateurID": 0,
-        "typeContact": null,
-        "message": "Bonjour, pouvez-vous m'aider",
-        "dateContact": "2024-06-19",
-        "status": null
+        "utilisateurID": 2,
+        "typeContact": "",
+        "message": "Bien s�r, en quoi puis je �tre utile?",
+        "dateContact": "2024-06-20",
+        "status": ""
     }
 ]

@@ -32,7 +32,6 @@ public class ClientService {
     private ResourceLoader resourceLoader;
     private List<ServiceClient> serviceClientList;
     private ConnectionService connectionService;
-    public static int identifier = 0;
 
     ClientService(ResourceLoader resourceLoader){
         this.resourceLoader = resourceLoader;
@@ -46,7 +45,7 @@ public class ClientService {
         return serviceClientList;
     }
 
-    public List<ServiceClient> sendMessage(String message){
+    public List<ServiceClient> sendMessage(ServiceClient serviceClient){
         // Path to write data
         String pathToCreateMessage = "src/main/resources/client-service.json";
 
@@ -63,15 +62,19 @@ public class ClientService {
 
             // Ajouter les nouvelles données
             ServiceClient newServiceClient = new ServiceClient();
-            newServiceClient.getId();
-            newServiceClient.setMessage(message);
-            newServiceClient.setUtilisateurID(identifier);
-
+            newServiceClient.setId(serviceClient.getId());
+            newServiceClient.setMessage(serviceClient.getMessage());
+            newServiceClient.setUtilisateurID(serviceClient.getUtilisateurID());
+            newServiceClient.setDateContact(serviceClient.getDateContact());
+            newServiceClient.setTypeContact(serviceClient.getTypeContact());
+            newServiceClient.setStatus(serviceClient.getStatus());
+        
+           
             int max = 0;
             serviceClientArray = mapper.readValue(file, new TypeReference<List<ServiceClient>>(){});
                     max = newServiceClient.getId();
-                for (ServiceClient serviceClient : serviceClientArray) {
-                    if (newServiceClient.getId() <= max) {
+                for (ServiceClient clients : serviceClientArray) {
+                    if (newServiceClient.getId() <= max || newServiceClient.getId() == clients.getId()) {
                         max++;
                         newServiceClient.setId(max);
                     }   

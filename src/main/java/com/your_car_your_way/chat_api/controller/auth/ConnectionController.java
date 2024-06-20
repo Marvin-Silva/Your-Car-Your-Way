@@ -15,6 +15,7 @@ import jakarta.websocket.server.PathParam;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +31,7 @@ public class ConnectionController {
     public ConnectionController(ConnectionService connectionService){
         this.connectionService = connectionService;
     }
-
-    @PostMapping("auth/user")
+    @PostMapping("/auth/user")
     public User getMethodName(@RequestBody LoginRequest loginRequest) {
         connectionService.loadUsers();
      return connectionService.connecte(loginRequest);

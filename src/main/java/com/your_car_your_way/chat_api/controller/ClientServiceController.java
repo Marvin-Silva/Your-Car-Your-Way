@@ -9,6 +9,7 @@ import com.your_car_your_way.chat_api.model.ServiceClient;
 import com.your_car_your_way.chat_api.service.client_service.ClientService;
 
 import java.io.IOException;
+import java.security.Provider.Service;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,11 +36,11 @@ public class ClientServiceController {
         return serviceClient;
     }
 
-    @PostMapping("send-message/{write-your-message}")
-    public List<ServiceClient> postMethodName(@PathVariable("write-your-message") String message) throws IOException {
+    @PostMapping("send-message")
+    public List<ServiceClient> postMethodName(@RequestBody ServiceClient serviceClient) throws IOException {
         //TODO: process POST request
-        List<ServiceClient> serviceClient = clientService.sendMessage(message);
-        return serviceClient;
+        List<ServiceClient> serviceClients = clientService.sendMessage(serviceClient);
+        return serviceClients;
     }
     
     
