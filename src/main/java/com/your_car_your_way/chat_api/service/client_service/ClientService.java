@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
@@ -39,8 +40,13 @@ public class ClientService {
 
     public List<ServiceClient> loadMessage() throws StreamReadException, DatabindException, IOException{
         Resource resource = resourceLoader.getResource("classpath:client-service.json");
+
+          // Ensure that the input stream is read as UTF-8
+        byte[] jsonData = resource.getInputStream().readAllBytes();
+        String jsonContent = new String(jsonData, StandardCharsets.UTF_8);
+
         ObjectMapper mapper = new ObjectMapper();
-        serviceClientList = mapper.readValue(resource.getInputStream(), new TypeReference<List<ServiceClient>>(){});
+        serviceClientList = mapper.readValue(jsonContent, new TypeReference<List<ServiceClient>>(){});
         System.out.println("RESOURCE: "+ serviceClientList);
         return serviceClientList;
     }

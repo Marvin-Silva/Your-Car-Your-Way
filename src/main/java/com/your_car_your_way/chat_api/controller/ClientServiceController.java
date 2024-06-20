@@ -30,7 +30,7 @@ public class ClientServiceController {
         this.clientService = clientService;
     }
 
-    @GetMapping("/message")
+    @GetMapping("/messages")
     public List<ServiceClient>getServiceClientMessage() throws StreamReadException, DatabindException, IOException {
         List<ServiceClient> serviceClient = clientService.loadMessage();
         return serviceClient;
