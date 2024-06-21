@@ -31,14 +31,16 @@ import lombok.Setter;
 @Setter
 public class ClientService {
     private ResourceLoader resourceLoader;
-    private List<ServiceClient> serviceClientList;
     private ConnectionService connectionService;
 
     ClientService(ResourceLoader resourceLoader){
         this.resourceLoader = resourceLoader;
     }
 
-    public List<ServiceClient> loadMessage() throws StreamReadException, DatabindException, IOException{
+    public List<ServiceClient> loadMessage(){
+        List<ServiceClient> serviceClientList = new ArrayList<>();
+        
+        try{
         Resource resource = resourceLoader.getResource("classpath:client-service.json");
 
           // Ensure that the input stream is read as UTF-8
@@ -48,6 +50,13 @@ public class ClientService {
         ObjectMapper mapper = new ObjectMapper();
         serviceClientList = mapper.readValue(jsonContent, new TypeReference<List<ServiceClient>>(){});
         System.out.println("RESOURCE: "+ serviceClientList);
+        }catch(StreamReadException se){
+            se.getStackTrace();
+        }catch(DatabindException de){
+            de.getStackTrace();
+        }catch(IOException e){
+            e.getStackTrace();
+        }
         return serviceClientList;
     }
 
@@ -94,7 +103,7 @@ public class ClientService {
              FileWriter fileWriter = new FileWriter(pathToCreateMessage);
              mapper.writeValue(fileWriter, serviceClientArray);
              fileWriter.close();
-                
+
         }catch(IOException e){
             e.printStackTrace();
         }

@@ -1,0 +1,6 @@
+{
+    "watch": ["src/main/resources/*.json"],
+    "exec": "mvn spring-boot:run",
+    "ext": "json"
+  }
+  
