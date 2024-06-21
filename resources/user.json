@@ -1,0 +1,20 @@
+[{
+    "id":1,
+    "nom":"Doe",
+    "prenom":"John",
+    "dateNaissance":"1990-02-20",
+    "adresse": "23 Rue de paris",
+    "email": "johndoe@gmail.com",
+    "login":"user",
+    "motDePasse":"user"
+},
+{
+    "id":2,
+    "nom":"Smith",
+    "prenom":"William",
+    "dateNaissance":"1980-07-15",
+    "adresse": "5 Route de chambery",
+    "email": "willsmith@gmail.com",
+    "login":"admin",
+    "motDePasse":"admin" 
+}]
