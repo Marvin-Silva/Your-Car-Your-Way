@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 style="margin-top:50px">Chat en ligne</h2>
+    <form style="margin-top:50px;  width:500px;" >
+        <input placeholder="User" name="chat" id="chat" style="height:200px; width:100%;" [(ngModel)]="serviceClient.message">
+     
+            <button type="submit" (click)="sendMessage()">Envoyer</button>
+    </form>
+<div style="border: 2px solid;">
+    <div *ngFor="let values of messages">
+        <p style="font-weight: bolder;" *ngIf="values.utilisateurID == 1">User</p>
+        <p style="font-weight: bolder;" *ngIf="values.utilisateurID == 2">Admin</p>
+        <p>{{ values.message }}</p>
+      </div>
+</div>   
+</body>
+<router-outlet></router-outlet>
+</html>
