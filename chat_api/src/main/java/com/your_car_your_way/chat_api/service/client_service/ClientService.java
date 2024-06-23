@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -99,10 +100,10 @@ public class ClientService {
             // initialiser newServiceClient avec les données nécessaires
             serviceClientArray.add(newServiceClient);
 
-             // Écrire les données mises à jour dans le fichier
-             FileWriter fileWriter = new FileWriter(pathToCreateMessage);
-             mapper.writeValue(fileWriter, serviceClientArray);
-             fileWriter.close();
+             // Écrire les données mises à jour dans le fichier avec le format UTF_8
+             BufferedWriter writter = Files.newBufferedWriter(Paths.get(pathToCreateMessage), StandardCharsets.UTF_8);
+             mapper.writeValue(writter, serviceClientArray);
+            //  Files.write(Paths.get(pathToCreateMessage), jsonContent.getBytes(StandardCharsets.UTF_8));
 
         }catch(IOException e){
             e.printStackTrace();
