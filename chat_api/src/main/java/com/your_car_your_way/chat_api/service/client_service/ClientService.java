@@ -2,13 +2,10 @@ package com.your_car_your_way.chat_api.service.client_service;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +18,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.your_car_your_way.chat_api.model.ServiceClient;
-import com.your_car_your_way.chat_api.model.User;
-import com.your_car_your_way.chat_api.service.auth.connection.ConnectionService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +27,6 @@ import lombok.Setter;
 @Setter
 public class ClientService {
     private ResourceLoader resourceLoader;
-    private ConnectionService connectionService;
 
     ClientService(ResourceLoader resourceLoader){
         this.resourceLoader = resourceLoader;

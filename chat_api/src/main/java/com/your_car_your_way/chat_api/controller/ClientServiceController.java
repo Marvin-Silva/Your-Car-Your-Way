@@ -9,12 +9,9 @@ import com.your_car_your_way.chat_api.model.ServiceClient;
 import com.your_car_your_way.chat_api.service.client_service.ClientService;
 
 import java.io.IOException;
-import java.security.Provider.Service;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

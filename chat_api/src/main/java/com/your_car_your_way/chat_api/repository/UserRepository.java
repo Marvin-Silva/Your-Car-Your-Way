@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.your_car_your_way.chat_api.model.User;
 
+@Service
 public class UserRepository implements UserInterface {
     private final ResourceLoader resourceLoader;
     private List<User> users;
