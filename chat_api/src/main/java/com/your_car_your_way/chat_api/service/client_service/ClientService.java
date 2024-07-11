@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.your_car_your_way.chat_api.model.ServiceClient;
 import com.your_car_your_way.chat_api.model.User;
-import com.your_car_your_way.chat_api.service.auth.ConnectionService;
+import com.your_car_your_way.chat_api.service.auth.connection.ConnectionService;
 
 import lombok.Getter;
 import lombok.Setter;
