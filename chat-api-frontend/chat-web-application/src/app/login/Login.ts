@@ -16,7 +16,7 @@ export class Login{
 
     constructor(private con:Connection, private router:Router){}
   
-    public Authentication(){
+    public Authentication():void{
       // console.log("Login credentials : ", this.loginRequest);
 
       this.con.connect(this.loginRequest)

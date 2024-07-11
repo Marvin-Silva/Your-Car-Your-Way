@@ -6,7 +6,6 @@ import { UserServiceInjection } from "../../service/injection/UserService.inject
 import { ClientServiceInjection } from "../../service/injection/ClientService.injection";
 import { ChatList } from "../../interface/chat.list";
 import { Router } from "@angular/router";
-import { Location } from "@angular/common";
 
 @Component({
     selector:'chat-on-direct',
@@ -56,7 +55,7 @@ export class ChatLive implements OnInit{
 
 }   
 
-    public sendMessage(){
+    public sendMessage():void{
     
         this.client.sendMessage(this.serviceClient).subscribe(()=>{
 
@@ -66,12 +65,12 @@ export class ChatLive implements OnInit{
         });
     }
 
-    public getServiceClientConversationList(){
+    public getServiceClientConversationList():void{
         this.clientServiceInjection.getServiceClient().subscribe(
             values => this.messages = values)
     }
 
-    public getUserList(){
+    public getUserList():void{
         this.userService.getUserList().subscribe(
             users => this.userList = users
         )
