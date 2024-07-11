@@ -38,7 +38,5 @@ public class ClientServiceController {
         //TODO: process POST request
         List<ServiceClient> serviceClients = chatInterface.sendMessage(serviceClient);
         return serviceClients;
-    }
-    
-    
+    } 
 }
