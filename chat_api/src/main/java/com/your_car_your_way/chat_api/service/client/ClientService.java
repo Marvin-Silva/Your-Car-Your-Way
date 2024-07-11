@@ -1,4 +1,4 @@
-package com.your_car_your_way.chat_api.service.client_service;
+package com.your_car_your_way.chat_api.service.client;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,13 +25,14 @@ import lombok.Setter;
 @Service
 @Getter
 @Setter
-public class ClientService {
+public class ClientService implements ChatInterface {
     private ResourceLoader resourceLoader;
 
     ClientService(ResourceLoader resourceLoader){
         this.resourceLoader = resourceLoader;
     }
 
+    @Override
     public List<ServiceClient> loadMessage(){
         List<ServiceClient> serviceClientList = new ArrayList<>();
         
@@ -55,6 +56,7 @@ public class ClientService {
         return serviceClientList;
     }
 
+    @Override
     public List<ServiceClient> sendMessage(ServiceClient serviceClient){
         // Path to write data
         String pathToCreateMessage = "src/main/resources/client-service.json";

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.your_car_your_way.chat_api.model.ServiceClient;
-import com.your_car_your_way.chat_api.service.client_service.ClientService;
+import com.your_car_your_way.chat_api.service.client.ChatInterface;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,22 +21,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping(path="client-service/api")
 public class ClientServiceController {
 
-    private ClientService clientService;
+    private ChatInterface chatInterface;
 
-    public ClientServiceController(ClientService clientService){
-        this.clientService = clientService;
+    public ClientServiceController(ChatInterface chatInterface){
+        this.chatInterface = chatInterface;
     }
 
     @GetMapping("/messages")
     public List<ServiceClient>getServiceClientMessage() throws StreamReadException, DatabindException, IOException {
-        List<ServiceClient> serviceClient = clientService.loadMessage();
+        List<ServiceClient> serviceClient = chatInterface.loadMessage();
         return serviceClient;
     }
 
     @PostMapping("send-message")
     public List<ServiceClient> postMethodName(@RequestBody ServiceClient serviceClient) throws IOException {
         //TODO: process POST request
-        List<ServiceClient> serviceClients = clientService.sendMessage(serviceClient);
+        List<ServiceClient> serviceClients = chatInterface.sendMessage(serviceClient);
         return serviceClients;
     }
     

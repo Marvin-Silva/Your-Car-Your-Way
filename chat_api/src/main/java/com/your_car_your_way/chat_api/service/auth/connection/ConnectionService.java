@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.your_car_your_way.chat_api.model.LoginRequest;
 import com.your_car_your_way.chat_api.model.User;
 import com.your_car_your_way.chat_api.repository.UserInterface;
-import com.your_car_your_way.chat_api.service.client_service.ClientService;
+import com.your_car_your_way.chat_api.service.client.ClientService;
 
 import lombok.Getter;
 import lombok.Setter;
