@@ -19,10 +19,10 @@ export class UserServiceInjection{
     };
 
     public userList:User[]=[];
-
     private userSubject = new BehaviorSubject<User>(this.user);
     private userSubjectList = new BehaviorSubject<User[]>(this.userList);
-  setUser(user: User) {
+
+  setUser(user: User):void {
     this.userSubject.next(user);
   }
 
@@ -30,7 +30,7 @@ export class UserServiceInjection{
     return this.userSubject.asObservable();
   }
 
-  setUserList(user: User[]){
+  setUserList(user: User[]):void{
   this.userSubjectList.next(this.userList);
   }
 

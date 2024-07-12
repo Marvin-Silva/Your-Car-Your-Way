@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ClientService } from "../../service/client/ClientService";
 import { ServiceClient } from "../../interface/ServiceClient";
 import { User } from "../../interface/User";
@@ -6,19 +6,25 @@ import { UserServiceInjection } from "../../service/injection/UserService.inject
 import { ClientServiceInjection } from "../../service/injection/ClientService.injection";
 import { ChatList } from "../../interface/chat.list";
 import { Router } from "@angular/router";
-import { Location } from "@angular/common";
+import { Subscription } from "rxjs";
 
 @Component({
     selector:'chat-on-direct',
     templateUrl:'./chat.live.html',
     styleUrls: ['./chat.live.scss']
 })
-export class ChatLive implements OnInit{
+export class ChatLive implements OnInit, OnDestroy{
     public messages: ServiceClient[]=[]; // Tableau pour stocker les messages
     public userList: User[]=[]
     public chat: ChatList[]=[];
+    private subscription!: Subscription;
+
     constructor(private client: ClientService, private userService: UserServiceInjection,
         private clientServiceInjection: ClientServiceInjection, private router: Router){}
+        
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
         
     public user: User = {
         id: -1,
@@ -41,7 +47,7 @@ export class ChatLive implements OnInit{
     }; 
 
     ngOnInit(): void {
-        this.userService.getUser().subscribe(value => {this.serviceClient.utilisateurID = value?.id;
+        this.subscription = this.userService.getUser().subscribe(value => {this.serviceClient.utilisateurID = value?.id;
             this.user= value
         });
         console.log("User ID: ",this.serviceClient.utilisateurID);
@@ -56,9 +62,9 @@ export class ChatLive implements OnInit{
 
 }   
 
-    public sendMessage(){
+    public sendMessage():void{
     
-        this.client.sendMessage(this.serviceClient).subscribe(()=>{
+        this.subscription = this.client.sendMessage(this.serviceClient).subscribe(()=>{
 
             setTimeout(()=>{
                 window.location.reload();
@@ -66,13 +72,13 @@ export class ChatLive implements OnInit{
         });
     }
 
-    public getServiceClientConversationList(){
-        this.clientServiceInjection.getServiceClient().subscribe(
+    public getServiceClientConversationList():void{
+        this.subscription = this.clientServiceInjection.getServiceClient().subscribe(
             values => this.messages = values)
     }
 
-    public getUserList(){
-        this.userService.getUserList().subscribe(
+    public getUserList():void{
+        this.subscription = this.userService.getUserList().subscribe(
             users => this.userList = users
         )
     }

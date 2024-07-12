@@ -9,8 +9,8 @@ export class ClientServiceInjection{
     clients: ServiceClient[]=[];
 
     private clientServiceSubject = new BehaviorSubject<ServiceClient[]>(this.clients);
-
-    setServiceClient(serviceClient: ServiceClient[]){
+    
+    setServiceClient(serviceClient: ServiceClient[]):void{
         this.clientServiceSubject.next(serviceClient);
     }
 

@@ -2,7 +2,6 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ServiceClient } from "../../interface/ServiceClient";
-import { Connection } from "../auth/Connection";
 import { ClientServiceInjection } from "../injection/ClientService.injection";
 
 @Injectable({
