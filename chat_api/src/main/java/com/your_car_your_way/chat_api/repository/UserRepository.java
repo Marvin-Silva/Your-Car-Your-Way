@@ -1,9 +1,11 @@
 package com.your_car_your_way.chat_api.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -13,9 +15,9 @@ import com.your_car_your_way.chat_api.model.User;
 @Service
 public class UserRepository implements UserInterface {
     private final ResourceLoader resourceLoader;
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 
-    UserRepository(ResourceLoader resourceLoader){
+    public UserRepository(ResourceLoader resourceLoader){
         this.resourceLoader = resourceLoader;
     }
     // Methode pour charger les utilisateurs

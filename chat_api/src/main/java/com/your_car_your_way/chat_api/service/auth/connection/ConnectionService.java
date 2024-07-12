@@ -1,4 +1,5 @@
 package com.your_car_your_way.chat_api.service.auth.connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,11 +17,11 @@ import lombok.Setter;
 @Setter
 public class ConnectionService implements ConnectionInterface {
 
-    private List<User> users;
+    public List<User> users = new ArrayList<>();
     private ClientService clientService;
     private UserInterface userInterface;
 
-    ConnectionService(UserInterface userInterface){
+    public ConnectionService(UserInterface userInterface){
         this.userInterface = userInterface;
     }
 
@@ -28,6 +29,7 @@ public class ConnectionService implements ConnectionInterface {
     @Override
     public User connecte(LoginRequest loginRequest){
         this.users = userInterface.loadUsers();
+        
     try{
         for(User user: users){
             if ((user.getLogin().equals(loginRequest.getLogin())) && (user.getMotDePasse().equals(loginRequest.getPassword()))) {
