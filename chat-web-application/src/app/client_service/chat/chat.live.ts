@@ -3,10 +3,9 @@ import { ClientService } from "../../service/client/ClientService";
 import { ServiceClient } from "../../interface/ServiceClient";
 import { User } from "../../interface/User";
 import { UserServiceInjection } from "../../service/injection/UserService.injection";
-import { ClientServiceInjection } from "../../service/injection/ClientService.injection";
 import { ChatList } from "../../interface/chat.list";
-import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
+import { Connection } from "../../service/auth/Connection";
 
 @Component({
     selector:'chat-on-direct',
@@ -19,8 +18,7 @@ export class ChatLive implements OnInit, OnDestroy{
     public chat: ChatList[]=[];
     private subscription!: Subscription;
 
-    constructor(private client: ClientService, private userService: UserServiceInjection,
-        private clientServiceInjection: ClientServiceInjection, private router: Router){}
+    constructor(private client: ClientService, private userService: UserServiceInjection, private clientService: ClientService, private connection: Connection){}
         
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
@@ -47,7 +45,7 @@ export class ChatLive implements OnInit, OnDestroy{
     }; 
 
     ngOnInit(): void {
-        this.subscription = this.userService.getUser().subscribe(value => {this.serviceClient.utilisateurID = value?.id;
+        this.subscription = this.connection.getUser().subscribe(value => {this.serviceClient.utilisateurID = value?.id;
             this.user= value
         });
         console.log("User ID: ",this.serviceClient.utilisateurID);
@@ -73,7 +71,7 @@ export class ChatLive implements OnInit, OnDestroy{
     }
 
     public getServiceClientConversationList():void{
-        this.subscription = this.clientServiceInjection.getServiceClient().subscribe(
+        this.subscription = this.clientService.getServiceClient().subscribe(
             values => this.messages = values)
     }
 

@@ -7,28 +7,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class UserServiceInjection{
 
-    public user:User={
-        id:-1,
-        nom:"",
-        prenom: "",
-        dateNaissance:new Date,
-        adresse:"",
-        email:"",
-        login:"",
-        motDePasse:""
-    };
-
     public userList:User[]=[];
-    private userSubject = new BehaviorSubject<User>(this.user);
     private userSubjectList = new BehaviorSubject<User[]>(this.userList);
-
-  setUser(user: User):void {
-    this.userSubject.next(user);
-  }
-
-  getUser(): Observable<User> {
-    return this.userSubject.asObservable();
-  }
 
   setUserList(user: User[]):void{
   this.userSubjectList.next(this.userList);
